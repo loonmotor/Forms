@@ -12,6 +12,12 @@
     "webpack-livereload-plugin": "^0.7.0"
   },
   "scripts": {
-    "babel-node": "babel-node"
+    "babel-node": "babel-node",
+    "start-server-dev" : "nodemon --exec npm run babel-node ./server-src/server.js",
+    "start-client-dev" : "webpack -p --progress --colors --watch",
+    "build-server" : "rm -rf server-built && babel server-src --out-dir server-built",
+    "build-client" : "webpack -p",
+    "build" : "npm run build-server && npm run build-client",
+    "start" : "node ./server-built/server.js"
   }
 }

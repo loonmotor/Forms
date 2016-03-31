@@ -8,7 +8,7 @@ const
 app.engine('ejs', ejs.__express);
 app.set('view engine', 'ejs');
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/', (req, res) => {
 	res.render('index');
