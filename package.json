@@ -2,8 +2,11 @@
   "dependencies": {
     "ejs": "^2.4.1",
     "express": "^4.13.4",
+    "flux": "^2.1.1",
+    "history": "^2.0.1",
     "react": "^0.14.8",
-    "react-dom": "^0.14.8"
+    "react-dom": "^0.14.8",
+    "react-router": "^2.0.1"
   },
   "devDependencies": {
     "babel-loader": "^6.2.4",
@@ -13,11 +16,11 @@
   },
   "scripts": {
     "babel-node": "babel-node",
-    "start-server-dev" : "nodemon --exec npm run babel-node ./server-src/server.js",
-    "start-client-dev" : "webpack -p --progress --colors --watch",
-    "build-server" : "rm -rf server-built && babel server-src --out-dir server-built",
-    "build-client" : "webpack -p",
-    "build" : "npm run build-server && npm run build-client",
-    "start" : "node ./server-built/server.js"
+    "start-server-dev": "nodemon --exec npm run babel-node ./server-src/server.js",
+    "start-client-dev": "webpack -p --progress --colors --watch",
+    "build-server": "rm -rf server-built && babel server-src --out-dir server-built",
+    "build-client": "webpack -p",
+    "build": "npm run build-server && npm run build-client",
+    "start": "node ./server-built/server.js"
   }
 }
