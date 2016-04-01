@@ -8,7 +8,7 @@ import FormCreate from './components/FormCreate';
 export default (
 	<Route path="/" component={App}>
 		<IndexRoute component={Home} />
-		<Route path="form-list" component={FormList} />
-		<Route path="form-create" component={FormCreate} />
+		<Route path="forms" component={FormList} />
+		<Route path="create" component={FormCreate} />
 	</Route>
 );

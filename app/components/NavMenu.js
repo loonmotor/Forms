@@ -15,8 +15,8 @@ class NavMenu extends Component {
 			        
 			        <div className="uk-dropdown uk-dropdown-small">
 			            <ul className="uk-nav uk-nav-dropdown">
-			                <li><Link to="/form-list"><i className="uk-icon-folder-o"></i>&nbsp; My Forms</Link></li>
-			                <li><Link to="/form-create"><i className="uk-icon-plus-square-o"></i>&nbsp; Create a New Form</Link></li>
+			                <li><Link to="/forms"><i className="uk-icon-folder-o"></i>&nbsp; My Forms</Link></li>
+			                <li><Link to="/create"><i className="uk-icon-plus-square-o"></i>&nbsp; Create a New Form</Link></li>
 			            </ul>
 			        </div>
 			    </li>
