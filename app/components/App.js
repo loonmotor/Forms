@@ -2,8 +2,18 @@ import React, {Component} from 'react';
 import NavMenu from './NavMenu';
 import {Link} from 'react-router';
 import Breadcrumbs from 'react-breadcrumbs';
+import fetch from 'isomorphic-fetch';
+import AuthStatusActionCreators from '../actions/AuthStatusActionCreators';
+import serverConfig from '../../server.config';
+
+const {url : {authStatus : authStatusUrl}} = serverConfig;
 
 class App extends Component {
+	componentDidMount () {
+		if (!this.props.initialData) {
+			AuthStatusActionCreators.getAuthStatus(App.requestInitialData());
+		}
+	}
 	render () {
 		return (
 			<div>
@@ -21,7 +31,7 @@ class App extends Component {
 								</Link>
 							</div>
 							<div className="uk-width-2-3">
-								<NavMenu />
+								<NavMenu status={this.props.initialData.status} />
 							</div>
 						</div>
 						<div className="uk-grid">
@@ -46,6 +56,11 @@ class App extends Component {
 			</div>
 		);
 	}
+}
+
+App.requestInitialData = () => {
+	return fetch(authStatusUrl)
+				.then(response => response.json());
 }
 
 export default App;

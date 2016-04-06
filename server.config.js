@@ -1,5 +1,5 @@
 export default {
 	url : {
-		authStatus : '/auth/status'
+		authStatus : 'http://localhost:3000/auth/status'
 	}
 };

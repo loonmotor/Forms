@@ -12,11 +12,18 @@
 
 	
 
-	<div id="root"></div>
+	<div id="root">
+		<div><%- content %></div>
+	</div>
 
+	<script type="application/json" id="react-initial-data">
+		<%- reactInitialData %>
+	</script>
 
 	<script src="js/external/jquery-2.2.2.min.js"></script>
 	<script src="js/external/uikit.min.js"></script>
 	<script src="js/bundle.js"></script>
+
+
 </body>
 </html>

@@ -1,18 +1,12 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
-import fetch from 'isomorphic-fetch';
 import {Container} from 'flux/utils';
 import AuthStatusStore from '../stores/AuthStatusStore';
-import AuthStatusActionCreators from '../actions/AuthStatusActionCreators';
-import serverConfig from '../../server.config';
-
-const {url : {authStatus : authStatusUrl}} = serverConfig;
 
 class NavMenu extends Component {
-	componentDidMount () {
-		AuthStatusActionCreators.getAuthStatus(NavMenu.getAuthStatus());
-	}
+
 	render () {
+		console.log(this.props);
 		return (
 			<ul className="uk-subnav uk-subnav-pill uk-float-right">
 			  
@@ -39,7 +33,7 @@ class NavMenu extends Component {
 
 			        
 			        <div className="uk-dropdown uk-dropdown-small">
-		            	{this.state.authStatus ?
+		            	{this.props.status ?
             				(
             					<ul className="uk-nav uk-nav-dropdown">
 	            					<li><a href=""><i className="uk-icon-sign-out"></i>&nbsp; Sign Out</a></li>
@@ -60,15 +54,10 @@ class NavMenu extends Component {
 	}
 }
 
-NavMenu.getAuthStatus = () => {
-	return fetch(authStatusUrl)
-				.then(response => response.json());
-}
-
 NavMenu.getStores = () => [AuthStatusStore];
 
 NavMenu.calculateState = () => ({
-	authStatus : AuthStatusStore.getState()
+	initialData : AuthStatusStore.getState()
 });
 
 export default Container.create(NavMenu);
