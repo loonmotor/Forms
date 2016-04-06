@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import NavMenu from './NavMenu';
-import Breadcrumb from './Breadcrumb';
 import {Link} from 'react-router';
+import Breadcrumbs from 'react-breadcrumbs';
 
 class App extends Component {
 	render () {
@@ -9,7 +9,7 @@ class App extends Component {
 			<div>
 				<div className="uk-grid">
 					<div className="uk-width-1-1">
-						
+
 					</div>
 				</div>
 				<div className="uk-grid">
@@ -26,7 +26,13 @@ class App extends Component {
 						</div>
 						<div className="uk-grid">
 							<div className="uk-width-1-1">
-								<Breadcrumb />
+								<Breadcrumbs routes={this.props.routes}
+											 params={this.props.params}
+											 separator=""
+											 setDocumentTitle={true}
+											 customClass="uk-breadcrumb"
+											 wrapperElement="ul"
+											 itemElement="li" />
 							</div>
 						</div>
 						<div className="uk-grid">

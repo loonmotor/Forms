@@ -10,7 +10,7 @@ class NavMenu extends Component {
 			    <li data-uk-dropdown="{mode:'click'}">
 
 			        
-			        <a href="">Forms <i className="uk-icon-angle-down"></i> </a>
+			        <a href="#">Forms <i className="uk-icon-angle-down"></i> </a>
 
 			        
 			        <div className="uk-dropdown uk-dropdown-small">
@@ -25,7 +25,7 @@ class NavMenu extends Component {
 			    <li data-uk-dropdown="{mode:'click'}">
 
 			        
-			        <a href="">Account <i className="uk-icon-angle-down"></i> </a>
+			        <a href="#">Account <i className="uk-icon-angle-down"></i> </a>
 
 			        
 			        <div className="uk-dropdown uk-dropdown-small">

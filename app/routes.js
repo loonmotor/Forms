@@ -6,9 +6,9 @@ import FormList from './components/FormList';
 import FormCreate from './components/FormCreate';
 
 export default (
-	<Route path="/" component={App}>
+	<Route path="/" name="Home" component={App}>
 		<IndexRoute component={Home} />
-		<Route path="forms" component={FormList} />
-		<Route path="create" component={FormCreate} />
+		<Route path="forms" name="My Forms" component={FormList} />
+		<Route path="create" name="Create a New Form" component={FormCreate} />
 	</Route>
 );
