@@ -1,7 +1,17 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
+import fetch from 'isomorphic-fetch';
+import {Container} from 'flux/utils';
+import AuthStatusStore from '../stores/AuthStatusStore';
+import AuthStatusActionCreators from '../actions/AuthStatusActionCreators';
+import serverConfig from '../../server.config';
+
+const {url : {authStatus : authStatusUrl}} = serverConfig;
 
 class NavMenu extends Component {
+	componentDidMount () {
+		AuthStatusActionCreators.getAuthStatus(NavMenu.getAuthStatus());
+	}
 	render () {
 		return (
 			<ul className="uk-subnav uk-subnav-pill uk-float-right">
@@ -29,11 +39,20 @@ class NavMenu extends Component {
 
 			        
 			        <div className="uk-dropdown uk-dropdown-small">
-			            <ul className="uk-nav uk-nav-dropdown">
-			                <li><a href=""><i className="uk-icon-google-plus-square"></i>&nbsp; Google Sign In</a></li>
-			                <li><a href=""><i className="uk-icon-facebook-official"></i>&nbsp; Facebook Sign In</a></li>
-			                <li><a href=""><i className="uk-icon-sign-out"></i>&nbsp; Sign Out</a></li>
-			            </ul>
+		            	{this.state.authStatus ?
+            				(
+            					<ul className="uk-nav uk-nav-dropdown">
+	            					<li><a href=""><i className="uk-icon-sign-out"></i>&nbsp; Sign Out</a></li>
+            					</ul>
+	            			)
+		            		:
+            				(
+            					<ul className="uk-nav uk-nav-dropdown">
+	            					<li><a href=""><i className="uk-icon-google-plus-square"></i>&nbsp; Google Sign In</a></li>
+		            				<li><a href=""><i className="uk-icon-facebook-official"></i>&nbsp; Facebook Sign In</a></li>
+	            				</ul>
+	            			)
+		            	}
 			        </div>
 			    </li>
 			</ul>
@@ -41,4 +60,15 @@ class NavMenu extends Component {
 	}
 }
 
-export default NavMenu;
+NavMenu.getAuthStatus = () => {
+	return fetch(authStatusUrl)
+				.then(response => response.json());
+}
+
+NavMenu.getStores = () => [AuthStatusStore];
+
+NavMenu.calculateState = () => ({
+	authStatus : AuthStatusStore.getState()
+});
+
+export default Container.create(NavMenu);
