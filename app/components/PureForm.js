@@ -3,6 +3,9 @@ import FormQuestion from './FormQuestion';
 import FormActionCreators from '../actions/FormActionCreators';
 
 class PureForm extends Component {
+	componentDidMount () {
+		UIkit.sticky(document.getElementById('start-here-sticky'), { top : 20 });
+	}
 	handleFormEdit (field, event) {
 		FormActionCreators.editFormField(field, event.target.value);
 	}
@@ -11,7 +14,7 @@ class PureForm extends Component {
 			<div>
 				<div className="uk-grid">
 					<div className="uk-width-4-5 uk-container-center uk-margin-top">
-						<div data-uk-sticky="{top:20}">
+						<div data-uk-sticky="{top:20}" id="start-here-sticky">
 							<div className="uk-button-dropdown uk-float-right" data-uk-dropdown>
 								<button className="uk-button">Start here <i className="uk-icon-caret-down"></i></button>
 								<div className="uk-dropdown uk-dropdown-bottom">
