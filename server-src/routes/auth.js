@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get('/status', (req, res) => {
 	res.json({
-		status : true
+		authStatus : true
 	});
 });
 

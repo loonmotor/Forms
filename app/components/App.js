@@ -5,13 +5,19 @@ import Breadcrumbs from 'react-breadcrumbs';
 import fetch from 'isomorphic-fetch';
 import AuthStatusActionCreators from '../actions/AuthStatusActionCreators';
 import serverConfig from '../../server.config';
+import {Container} from 'flux/utils';
+import AuthStatusStore from '../stores/AuthStatusStore';
 
 const {url : {authStatus : authStatusUrl}} = serverConfig;
 
 class App extends Component {
 	componentDidMount () {
 		if (!this.props.initialData) {
-			AuthStatusActionCreators.getAuthStatus(App.requestInitialData());
+			App.requestInitialData().then(response => {
+				AuthStatusActionCreators.setAuthStatus(response[0].authStatus);
+			});
+		} else {
+			AuthStatusActionCreators.setAuthStatus(this.props.initialData[0].authStatus);
 		}
 	}
 	render () {
@@ -31,7 +37,7 @@ class App extends Component {
 								</Link>
 							</div>
 							<div className="uk-width-2-3">
-								<NavMenu status={this.props.initialData.status} />
+								<NavMenu authStatus={this.state.authStatus} />
 							</div>
 						</div>
 						<div className="uk-grid">
@@ -59,8 +65,15 @@ class App extends Component {
 }
 
 App.requestInitialData = () => {
-	return fetch(authStatusUrl)
-				.then(response => response.json());
+	return Promise.all([
+		fetch(authStatusUrl).then(response => response.json())
+	]);
 }
 
-export default App;
+App.getStores = () => [AuthStatusStore];
+
+App.calculateState = (prevState) => ({
+	authStatus : AuthStatusStore.getState()
+});
+
+export default Container.create(App);

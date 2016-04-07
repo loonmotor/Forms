@@ -26,7 +26,6 @@ let renderRoute = (res, routeObj) => {
 			let handleCreateElement = (Component, props) => (
 				<Component initialData={data} {...props} />
 			);
-
 			res.render('index', {
 				reactInitialData : JSON.stringify(data),
 				content : renderToString(<RouterContext createElement={handleCreateElement} {...routeObj} />)

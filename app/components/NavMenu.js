@@ -1,12 +1,9 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
-import {Container} from 'flux/utils';
-import AuthStatusStore from '../stores/AuthStatusStore';
 
 class NavMenu extends Component {
 
 	render () {
-		console.log(this.props);
 		return (
 			<ul className="uk-subnav uk-subnav-pill uk-float-right">
 			  
@@ -33,7 +30,7 @@ class NavMenu extends Component {
 
 			        
 			        <div className="uk-dropdown uk-dropdown-small">
-		            	{this.props.status ?
+		            	{this.props.authStatus ?
             				(
             					<ul className="uk-nav uk-nav-dropdown">
 	            					<li><a href=""><i className="uk-icon-sign-out"></i>&nbsp; Sign Out</a></li>
@@ -54,10 +51,4 @@ class NavMenu extends Component {
 	}
 }
 
-NavMenu.getStores = () => [AuthStatusStore];
-
-NavMenu.calculateState = () => ({
-	initialData : AuthStatusStore.getState()
-});
-
-export default Container.create(NavMenu);
+export default NavMenu;

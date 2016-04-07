@@ -4,7 +4,7 @@ import routes from './app/routes';
 import {render} from 'react-dom';
 
 let handleCreateElement = (Component, props) => {
-	if (Component.hasOwnProperty('requestInitialData')) {
+	if ('requestInitialData' in Component) {
 		let initialData = document.getElementById('react-initial-data').textContent;
 		if (initialData.length > 0) {
 			initialData = JSON.parse(initialData);
