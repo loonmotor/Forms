@@ -12,7 +12,7 @@ class PureForm extends Component {
 				<div className="uk-grid">
 					<div className="uk-width-4-5 uk-container-center uk-margin-top">
 						<div data-uk-sticky="{top:20}">
-							<div className="uk-button-dropdown" data-uk-dropdown>
+							<div className="uk-button-dropdown uk-float-right" data-uk-dropdown>
 								<button className="uk-button">Start here <i className="uk-icon-caret-down"></i></button>
 								<div className="uk-dropdown uk-dropdown-bottom">
 									<ul className="uk-nav uk-nav-dropdown">

@@ -11,11 +11,11 @@ class FormQuestion extends Component {
 			<div className="uk-form-row uk-placeholder">
 				<label className="uk-form-label" htmlFor="title">Question {index + 1}</label>
 				<input type="text" onChange={this.handleQuestionChange.bind(this, index, 'title')} id="description" placeholder="" className="uk-width-6-10" value={question.title} />
-				<select className="uk-width-3-10" value={question.type} onChange={this.handleQuestionChange.bind(this, index, 'type')}>
+				<select className="uk-width-3-10 uk-margin-left" value={question.type} onChange={this.handleQuestionChange.bind(this, index, 'type')}>
 		            <option value="short">Short answer</option>
 		            <option value="long">Long answer</option>
 		        </select>
-			    <a onClick={FormActionCreators.deleteFormQuestion.bind(null, index)} className="uk-close"></a>
+			    <a onClick={FormActionCreators.deleteFormQuestion.bind(null, index)} className="uk-close uk-margin-left"></a>
 			</div>
 		);
 	}

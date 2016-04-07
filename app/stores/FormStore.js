@@ -15,6 +15,12 @@ let defaultForm = () => ({
 	]
 });
 
+let defaultQuestion = () => ({
+	title : '',
+	answer : '',
+	type : 'short'
+});
+
 class FormStore extends ReduceStore {
 	getInitialState () {
 		return defaultForm();
@@ -24,7 +30,7 @@ class FormStore extends ReduceStore {
 			case constants.ADD_FORM_QUESTION :
 				return update(this.getState(), {
 					questions : {
-						$push : [{ title : '', answer : '', type : 'long' }]
+						$push : [defaultQuestion()]
 					}
 				});
 			case constants.DELETE_FORM_QUESTION :
