@@ -7,7 +7,6 @@ class FormQuestion extends Component {
 	}
 	render () {
 		const {question, index} = this.props;
-		console.log(index);
 		return (
 			<div className="uk-form-row uk-placeholder">
 				<label className="uk-form-label" htmlFor="title">Question {index + 1}</label>
