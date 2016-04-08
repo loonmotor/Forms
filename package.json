@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "babel-polyfill": "^6.7.4",
     "ejs": "^2.4.1",
     "express": "^4.13.4",
     "flux": "^2.1.1",
@@ -11,6 +12,8 @@
     "react": "^0.14.8",
     "react-addons-update": "^0.14.8",
     "react-breadcrumbs": "^1.3.10",
+    "react-dnd": "^2.1.4",
+    "react-dnd-html5-backend": "^2.1.2",
     "react-dom": "^0.14.8",
     "react-router": "^2.0.1"
   },
@@ -24,7 +27,7 @@
   "scripts": {
     "babel-node": "babel-node",
     "start-server-dev": "nodemon --exec npm run babel-node ./server-src/server.js",
-    "start-client-dev": "webpack -p --progress --colors --watch",
+    "start-client-dev": "webpack --progress --colors --watch",
     "build-server": "rm -rf server-built && babel server-src --out-dir server-built",
     "build-client": "webpack -p",
     "build": "npm run build-server && npm run build-client",

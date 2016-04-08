@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import FormQuestion from './FormQuestion';
 import FormActionCreators from '../actions/FormActionCreators';
+import {DragDropContext} from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 
 class PureForm extends Component {
 	componentDidMount () {
@@ -67,4 +69,4 @@ class PureForm extends Component {
 	}
 }
 
-export default PureForm;
+export default DragDropContext(HTML5Backend)(PureForm);

@@ -1,5 +1,6 @@
 import AppDispatcher from '../AppDispatcher';
 import constants from '../constants';
+import {throttle} from '../utils';
 
 export default {
 	addFormQuestion () {
@@ -7,16 +8,16 @@ export default {
 			type : constants.ADD_FORM_QUESTION
 		});
 	},
-	deleteFormQuestion (index) {
+	deleteFormQuestion (id) {
 		AppDispatcher.dispatch({
 			type : constants.DELETE_FORM_QUESTION,
-			index : index
+			id   : id
 		});
 	},
-	editFormQuestion (index, field, value) {
+	editFormQuestion (id, field, value) {
 		AppDispatcher.dispatch({
 			type : constants.EDIT_FORM_QUESTION,
-			index : index,
+			id   : id,
 			field : field,
 			value : value
 		});
@@ -27,5 +28,13 @@ export default {
 			field : field,
 			value : value
 		});
-	}
+	},
+	updateQuestionPosition : throttle((id, afterId) => {
+		AppDispatcher.dispatch({
+			type : constants.UPDATE_QUESTION_POSITION,
+			id   : id,
+			afterId : afterId
+		});
+	}, 500)
+
 };
