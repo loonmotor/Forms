@@ -37,11 +37,14 @@ class FormQuestion extends Component {
 		const style = {
 			opacity : 1
 		};
-		if (isActive) {
+		if (canDrop) {
 			style.opacity = 0.5;
 		}
+		if (isActive) {
+			style.opacity = 1;
+		}
 		return connectDropTarget(connectDragSource(
-			<div className="uk-form-row uk-placeholder" style={style}>
+			<div className="uk-form-row uk-placeholder move-pointer" style={style}>
 				<label className="uk-form-label" htmlFor={index}>Question {index + 1}</label>
 				<input type="text" onChange={this.handleQuestionChange.bind(this, question.id, 'title')} id={question.id} placeholder="" className="uk-width-6-10" value={question.title} />
 				<select className="uk-width-3-10 uk-margin-left" value={question.type} onChange={this.handleQuestionChange.bind(this, question.id, 'type')}>
