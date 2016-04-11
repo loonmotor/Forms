@@ -7,11 +7,7 @@ let defaultForm = () => ({
 	title       : '',
 	description : '',
 	questions   : [
-		// { title : 'abc', answer : '', type : 'long' },
-		// { title : 'def', answer : '', type : 'long' },
-		// { title : 'ghi', answer : '', type : 'long' },
-		// { title : 'jkl', answer : '', type : 'long' },
-		// { title : 'mno', answer : '', type : 'long' }
+		defaultQuestion()
 	]
 });
 
@@ -19,7 +15,7 @@ let defaultQuestion = () => ({
 	id : Date.now(),
 	title : '',
 	answer : '',
-	type : 'short'
+	type : 'multiplechoice'
 });
 
 class FormStore extends ReduceStore {
