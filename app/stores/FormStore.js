@@ -7,7 +7,7 @@ let defaultForm = () => ({
 	title       : '',
 	description : '',
 	questions   : [
-		defaultQuestion()
+		// defaultQuestion()
 	]
 });
 
