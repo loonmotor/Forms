@@ -1,4 +1,6 @@
 import express from 'express';
+import passport from 'passport';
+import path from 'path';
 
 const router = express.Router();
 
@@ -7,5 +9,9 @@ router.get('/status', (req, res) => {
 		authStatus : true
 	});
 });
+
+router.get('/google/:return?', passport.authenticate('google', {
+	scope : ['email', 'public_profile']
+}));
 
 export default router;
