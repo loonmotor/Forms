@@ -20,6 +20,7 @@ let defaultQuestion = () => ({
 	id : Date.now(),
 	title : '',
 	answer : '',
+	required : false,
 	type : 'short',
 	options : [defaultMultiChoiceOption()]
 });
@@ -75,7 +76,6 @@ class FormStore extends ReduceStore {
 					}
 				});
 			case constants.EDIT_MULTIPLE_CHOICE_OPTION :
-				console.log(this.getState());
 				let nextState;
 				if (action.value.title === '') {
 					nextState = update(this.getState(), {
@@ -115,7 +115,16 @@ class FormStore extends ReduceStore {
 					});
 				}
 				return nextState;
-				
+			case constants.TOGGLE_FORM_QUESTION_REQUIRED :
+				return update(this.getState(), {
+					questions : {
+						[this.getQuestionIndex(action.questionId)] : {
+							required : {
+								$apply : (value) => !value
+							}
+						}
+					}
+				});
 			default :
 				return state;
 		}

@@ -32,6 +32,9 @@ class FormQuestion extends Component {
 	handleQuestionChange (id, field, event) {
 		FormActionCreators.editFormQuestion(id, field, event.target.value);
 	}
+	toggleRequired (id) {
+		FormActionCreators.toggleFormQuestionRequired(id);
+	}
 	renderQuestion (type, props) {
 		const {question} = props;
 		switch (type) {
@@ -62,6 +65,12 @@ class FormQuestion extends Component {
 		return connectDropTarget(connectDragSource(
 			<div className="uk-form-row uk-placeholder move-pointer" style={style}>
 				<label className="uk-form-label" htmlFor={index}>Question {index + 1} <a onClick={FormActionCreators.deleteFormQuestion.bind(null, question.id)} className="uk-close uk-margin-left"></a></label>
+				<div className="uk-margin">
+					<label>
+						<input type="checkbox" checked={question.required} onChange={this.toggleRequired.bind(this, question.id)} />
+							{' '}Required
+						</label>
+				</div>
 				<div className="uk-grid uk-grid-small">
 					<div className="uk-width-3-10">
 						<select className="uk-width-1-1" value={question.type} onChange={this.handleQuestionChange.bind(this, question.id, 'type')}>

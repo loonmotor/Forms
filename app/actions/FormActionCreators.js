@@ -43,6 +43,11 @@ export default {
 			optionId : optionId,
 			value : value
 		});
+	},
+	toggleFormQuestionRequired (questionId) {
+		AppDispatcher.dispatch({
+			type : constants.TOGGLE_FORM_QUESTION_REQUIRED,
+			questionId : questionId
+		});
 	}
-
 };
