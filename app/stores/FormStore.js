@@ -11,12 +11,19 @@ let defaultForm = () => ({
 	]
 });
 
+let defaultMultiChoiceOption = () => ({
+	id : Date.now(),
+	title : ''
+});
+
 let defaultQuestion = () => ({
 	id : Date.now(),
 	title : '',
 	answer : '',
-	type : 'multiplechoice'
+	type : 'short',
+	options : [defaultMultiChoiceOption()]
 });
+
 
 class FormStore extends ReduceStore {
 	getInitialState () {
@@ -24,6 +31,9 @@ class FormStore extends ReduceStore {
 	}
 	getQuestionIndex (id) {
 		return this._state.questions.findIndex(question => question.id === id);
+	}
+	getMultipleChoiceOptionIndex (questionId, optionId) {
+		return this._state.questions[this.getQuestionIndex(questionId)].options.findIndex(option => option.id === optionId);
 	}
 	reduce (state, action) {
 		switch (action.type) {
@@ -64,6 +74,48 @@ class FormStore extends ReduceStore {
 						$set : action.value
 					}
 				});
+			case constants.EDIT_MULTIPLE_CHOICE_OPTION :
+				console.log(this.getState());
+				let nextState;
+				if (action.value.title === '') {
+					nextState = update(this.getState(), {
+						questions : {
+							[this.getQuestionIndex(action.questionId)] : {
+								options : {
+									$splice : [[this.getMultipleChoiceOptionIndex(action.questionId, action.optionId), 1]]
+								}
+							}
+						}
+					});
+				}
+				if (action.value.title) {
+					nextState = update(this.getState(), {
+									questions : {
+										[this.getQuestionIndex(action.questionId)] : {
+											options : {
+												[this.getMultipleChoiceOptionIndex(action.questionId, action.optionId)] : {
+													title : {
+														$set : action.value.title
+													}
+												}
+											}
+										}
+									}
+								});
+				}
+				if (nextState.questions[this.getQuestionIndex(action.questionId)].options[nextState.questions[this.getQuestionIndex(action.questionId)].options.length - 1].title !== '') {
+					nextState = update(nextState, {
+						questions : {
+							[this.getQuestionIndex(action.questionId)] : {
+								options : {
+									$push : [defaultMultiChoiceOption()]
+								}
+							}
+						}
+					});
+				}
+				return nextState;
+				
 			default :
 				return state;
 		}

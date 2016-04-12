@@ -35,6 +35,14 @@ export default {
 			id   : id,
 			afterId : afterId
 		});
-	}, 500)
+	}, 500),
+	editMultipleChoiceOption (questionId, optionId, value) {
+		AppDispatcher.dispatch({
+			type : constants.EDIT_MULTIPLE_CHOICE_OPTION,
+			questionId : questionId,
+			optionId : optionId,
+			value : value
+		});
+	}
 
 };

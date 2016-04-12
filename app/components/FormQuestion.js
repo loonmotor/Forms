@@ -36,15 +36,15 @@ class FormQuestion extends Component {
 		const {question} = props;
 		switch (type) {
 			case 'short' :
-				return <input type="text" onChange={this.handleQuestionChange.bind(this, question.id, 'title')} id={question.id} placeholder="" className="uk-width-1-1" value={question.title} />;
+				return <input type="text" onChange={this.handleQuestionChange.bind(this, question.id, 'title')} id={question.id} placeholder="Add your question" className="uk-width-1-1" value={question.title} />;
 			case 'long' :
 				return (
-					<textarea onChange={this.handleQuestionChange.bind(this, question.id, 'title')} placeholder="" className="uk-width-1-1" value={question.title}>
+					<textarea onChange={this.handleQuestionChange.bind(this, question.id, 'title')} placeholder="Add your question" className="uk-width-1-1" value={question.title}>
 
 					</textarea>
 				);
 			case 'multiplechoice' :
-				return <MultipleChoice />;
+				return <MultipleChoice questionId={question.id} options={question.options} />;
 		}
 	}
 	render () {
