@@ -35,8 +35,8 @@ class FormQuestion extends Component {
 	toggleRequired (id) {
 		FormActionCreators.toggleFormQuestionRequired(id);
 	}
-	renderQuestion (type, props) {
-		const {question} = props;
+	renderQuestion (question) {
+		const {type} = question;
 		switch (type) {
 			case 'short' :
 				return <input type="text" onChange={this.handleQuestionChange.bind(this, question.id, 'title')} id={question.id} placeholder="Add your question" className="uk-width-1-1" value={question.title} />;
@@ -47,6 +47,8 @@ class FormQuestion extends Component {
 					</textarea>
 				);
 			case 'multiplechoice' :
+				return <MultipleChoice questionId={question.id} options={question.options} />;
+			case 'radio' :
 				return <MultipleChoice questionId={question.id} options={question.options} />;
 		}
 	}
@@ -77,10 +79,11 @@ class FormQuestion extends Component {
 				            <option value="short">Short answer</option>
 				            <option value="long">Long answer</option>
 				            <option value="multiplechoice">Multiple choice</option>
+				            <option value="radio">Radio</option>
 				        </select>
 			        </div>
 			        <div className="uk-width-7-10">
-						{this.renderQuestion(question.type, this.props)}
+						{this.renderQuestion(question)}
 					</div>
 				</div>
 			</div>
