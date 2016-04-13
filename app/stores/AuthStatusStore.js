@@ -8,8 +8,10 @@ class AuthStatusStore extends ReduceStore {
 	}
 	reduce (state, action) {
 		switch (action.type) {
-			case constants.SET_AUTH_STATUS :
-				return action.authStatus;
+			case constants.FETCH_AUTH_STATUS_SUCCESS :
+				return action.payload.response.authStatus;
+			case constants.SIGN_OUT_SUCCESS :
+				return false;
 			default :
 				return state;
 		}

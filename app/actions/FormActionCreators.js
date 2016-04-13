@@ -16,7 +16,7 @@ export default {
 	},
 	editFormQuestion (id, field, value) {
 		AppDispatcher.dispatch({
-			type : constants.EDIT_FORM_QUESTION,
+			type : constants.EDIT_QUESTION,
 			id   : id,
 			field : field,
 			value : value

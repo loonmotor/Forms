@@ -7,17 +7,16 @@ import AuthStatusActionCreators from '../actions/AuthStatusActionCreators';
 import serverConfig from '../../server.config';
 import {Container} from 'flux/utils';
 import AuthStatusStore from '../stores/AuthStatusStore';
+import {browserHistory} from 'react-router';
 
 const {url : {authStatus : authStatusUrl}} = serverConfig;
 
 class App extends Component {
 	componentDidMount () {
-		if (!this.props.initialData) {
-			App.requestInitialData().then(response => {
-				AuthStatusActionCreators.setAuthStatus(response[0].authStatus);
-			});
-		} else {
-			AuthStatusActionCreators.setAuthStatus(this.props.initialData[0].authStatus);
+		AuthStatusActionCreators.fetchAuthStatus();
+		window.successRedirect = () => {
+			browserHistory.push('/');
+			AuthStatusActionCreators.fetchAuthStatus();
 		}
 	}
 	render () {
@@ -62,12 +61,6 @@ class App extends Component {
 			</div>
 		);
 	}
-}
-
-App.requestInitialData = () => {
-	return Promise.all([
-		fetch(authStatusUrl).then(response => response.json())
-	]);
 }
 
 App.getStores = () => [AuthStatusStore];

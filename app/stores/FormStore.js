@@ -50,7 +50,7 @@ class FormStore extends ReduceStore {
 						$splice : [[this.getQuestionIndex(action.id), 1]]
 					}
 				});
-			case constants.EDIT_FORM_QUESTION :
+			case constants.EDIT_QUESTION :
 				return update(this.getState(), {
 					questions : {
 						[this.getQuestionIndex(action.id)] : {
