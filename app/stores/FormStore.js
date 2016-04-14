@@ -4,6 +4,7 @@ import constants from '../constants';
 import update from 'react-addons-update';
 
 let defaultForm = () => ({
+	shortId     : '',
 	title       : '',
 	description : '',
 	questions   : [
@@ -125,6 +126,17 @@ class FormStore extends ReduceStore {
 						}
 					}
 				});
+			case constants.CREATE_FORM_SUCCESS :
+				return update(this.getState(), {
+					shortId : {
+						$set : action.payload.response.doc.shortId
+					}
+				});
+			case constants.EDIT_FORM_SUCCESS :
+				console.log(action.payload.response);
+				return action.payload.response.doc;
+			case constants.FETCH_FORM_SUCCESS :
+				return action.payload.response.doc;
 			default :
 				return state;
 		}

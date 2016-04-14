@@ -29,6 +29,15 @@ class PureForm extends Component {
 					</div>
 					<div className="uk-width-medium-4-5 uk-width-large-3-5 uk-container-center uk-margin-top">
 						<form className="uk-form uk-form-stacked uk-margin-large-top">
+							{this.props.shortId ?
+								(
+									<div className="uk-form-row">
+										<label className="uk-form-label" htmlFor="shareLink">Share Link</label>
+										<input type="text" id="shareLink" className="uk-width-1-1" defaultValue={this.props.shortId} readOnly />
+									</div>
+								) :
+								''
+							}
 							<div className="uk-form-row">
 								<label className="uk-form-label" htmlFor="title">Title</label>
 								<input type="text" id="title" onChange={this.handleFormEdit.bind(this, 'title')} placeholder="Form Title" className="uk-width-1-1" value={this.props.form.title} />

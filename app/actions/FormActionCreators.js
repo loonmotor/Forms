@@ -1,6 +1,7 @@
 import AppDispatcher from '../AppDispatcher';
 import constants from '../constants';
 import {throttle} from '../utils';
+import formAPI from '../api/formAPI';
 
 export default {
 	addFormQuestion () {
@@ -49,5 +50,26 @@ export default {
 			type : constants.TOGGLE_FORM_QUESTION_REQUIRED,
 			questionId : questionId
 		});
+	},
+	createForm () {
+		AppDispatcher.dispatchAsync(formAPI.createForm(), {
+			request : constants.CREATE_FORM,
+			success : constants.CREATE_FORM_SUCCESS,
+			error   : constants.CREATE_FORM_ERROR
+		});
+	},
+	editForm (form) {
+		AppDispatcher.dispatchAsync(formAPI.editForm(form), {
+			request : constants.EDIT_FORM,
+			success : constants.EDIT_FORM_SUCCESS,
+			error   : constants.EDIT_FORM_ERROR
+		});
+	},
+	fetchForm (id) {
+		AppDispatcher.dispatchAsync(formAPI.fetchForm(id), {
+			request : constants.FETCH_FORM,
+			success : constants.FETCH_FORM_SUCCESS,
+			error   : constants.FETCH_FORM_ERROR
+		})
 	}
 };

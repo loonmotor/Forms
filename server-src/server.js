@@ -3,6 +3,8 @@ import ejs from 'ejs';
 import path from 'path';
 import authRoute from './routes/auth';
 import rootRoute from './routes/root';
+import dataRoute from './routes/data';
+import publicDataRoute from './routes/publicData';
 import restLogger from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
@@ -45,6 +47,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/auth', authRoute);
+app.use('/data', dataRoute);
+app.use('/public/data', publicDataRoute);
 
 app.use(express.static(path.join(__dirname, '../public'), {
 	maxAge : config.maxAge.static

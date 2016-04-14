@@ -3,7 +3,7 @@ import config from '../../server.config';
 
 const
 	{url:{mongodb:databaseUrl}} = config
-	, db = mongojs(databaseUrl, ['User']);
+	, db = mongojs(databaseUrl, ['User', 'Form']);
 
 db.on('error', err => console.log(err));
 db.on('ready', () => console.log('Connected to mongo db'));
