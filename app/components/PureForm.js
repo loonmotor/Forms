@@ -52,27 +52,6 @@ class PureForm extends Component {
 						</form>
 					</div>
 				</div>
-				<div style={{height:1000}}></div>
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
 			</div>
 			);
 	}

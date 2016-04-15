@@ -14,6 +14,6 @@ class AppDispatcher extends Dispatcher {
 				error => this.dispatch({ type : error, payload : Object.assign({}, payload, {error}) })
 			);
 	}
-}
+} 
 
 export default new AppDispatcher();

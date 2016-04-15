@@ -9,7 +9,7 @@ import NotFound from './components/NotFound';
 
 export default (
 	<Route path="/" name="Home" component={App}>
-		<IndexRoute component={Home} />
+		<IndexRoute component={FormCreate} />
 		<Route path="forms" name="My Forms" component={FormList} />
 		<Route path="create" name="Create a New Form" component={FormCreate} />
 		<Route path="create/:id" name="Create a New Form" component={FormEdit} />

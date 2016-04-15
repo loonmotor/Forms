@@ -2,37 +2,40 @@ import React, {Component} from 'react';
 import PureForm from './PureForm';
 import {Container} from 'flux/utils';
 import FormStore from '../stores/FormStore';
-import AuthStatusStore from '../stores/AuthStatusStore';
-import FormActionCreators from '../actions/FormActionCreators';
-import {browserHistory} from 'react-router';
+import ActionStore from '../stores/ActionStore';
 
 class FormCreate extends Component {
-	componentDidMount () {
-		console.log(this.state.form);
-		const {authStatus} = this.state;
-		if (authStatus) {
-			FormActionCreators.createForm();
-		}
-	}
-	switchToFormEdit (shortId) {
-		setTimeout(function (shortId) {
-			browserHistory.replace('/create/' + shortId);
-		}, 0, shortId);
-	}
 	render () {
-		const {form:{shortId}} = this.state;
-		if (shortId) {
-			this.switchToFormEdit(shortId);
-		}
-		return null;
+		console.log('haha');
+		return (
+			<div>
+				<PureForm form={this.state.form} />
+				<br /> 
+				<br />
+				<hr />
+		
+				        <div className="uk-panel uk-panel-box uk-margin-bottom">
+				    		<h3 className="uk-panel-title">State</h3>
+				    		<textarea value={JSON.stringify(this.state.form, null, 4)} style={{ width: '100%', height: 400 }} readOnly>
+					            
+				            </textarea>
+				        </div>
+				        <div className="uk-panel uk-panel-box uk-margin-large-bottom">
+				    		<h3 className="uk-panel-title">Actions</h3>
+		            		<textarea value={JSON.stringify(this.state.actions, null, 4)} style={{ width: '100%', height: 400 }} readOnly>
+		                     
+		                    </textarea>
+				        </div>
+			</div>
+		);
 	}
 }
 
-FormCreate.getStores = () => [FormStore, AuthStatusStore];
+FormCreate.getStores = () => [FormStore, ActionStore];
 
 FormCreate.calculateState = (prevState) => ({
 	form : FormStore.getState(),
-	authStatus : AuthStatusStore.getState()
+	actions : ActionStore.getState()
 });
 
 export default Container.create(FormCreate);

@@ -32,29 +32,7 @@ class NavMenu extends Component {
 			}
 
 			    
-			    <li data-uk-dropdown="{mode:'click'}">
-
-			        
-			        <a href="#" onClick={AuthStatusActionCreators.fetchAuthStatus.bind(null)}>Account <i className="uk-icon-angle-down"></i> </a>
-
-			        
-			        <div className="uk-dropdown uk-dropdown-small">
-		            	{this.props.authStatus ?
-            				(
-            					<ul className="uk-nav uk-nav-dropdown">
-	            					<li><a href="" onClick={this.handleSignOut.bind(this)}><i className="uk-icon-sign-out"></i>&nbsp; Sign Out</a></li>
-            					</ul>
-	            			)
-		            		:
-            				(
-            					<ul className="uk-nav uk-nav-dropdown">
-	            					<li><a href="/auth/google" target="_blank"><i className="uk-icon-google-plus-square"></i>&nbsp; Google Sign In</a></li>
-		            				<li><a href=""><i className="uk-icon-facebook-official"></i>&nbsp; Facebook Sign In</a></li>
-	            				</ul>
-	            			)
-		            	}
-			        </div>
-			    </li>
+			    
 			</ul>
 		);
 	}
